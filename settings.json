@@ -1,0 +1,245 @@
+{
+  // Based on Neovim configuration - Everforest theme with JetBrains font
+  "agent_servers": {
+    "your_agent": {
+      "command": "path_to_executable",
+      "args": [],
+      "env": {}
+    }
+  },
+  "icon_theme": "Material Icon Theme",
+  "theme": "Everforest Dark Hard",
+  "base_keymap": "VSCode",
+  "vim_mode": true,
+
+  // Font settings (matching Neovim)
+  "ui_font_family": "JetBrainsMonoNL Nerd Font",
+  "buffer_font_family": "JetBrainsMonoNL Nerd Font",
+  "ui_font_size": 14,
+  "buffer_font_size": 14,
+  "terminal": {
+    "env": {
+      "Q_NEW_SESSION": "1"
+    },
+    "font_family": "JetBrainsMonoNL Nerd Font",
+    "font_size": 14
+  },
+
+  "cursor_blink": false,
+  "relative_line_numbers": true,
+  "vertical_scroll_margin": 10,
+  "format_on_save": "on",
+  "auto_update": true,
+  "linked_edits": true,
+  "show_whitespaces": "none",
+  "soft_wrap": "editor_width",
+
+  // Vim configuration (matching Neovim)
+  "vim": {
+    "use_system_clipboard": "always",
+    // "use_multiline_find": true,
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+    "highlight_on_yank_duration": 200
+  },
+
+  // UI preferences
+  "minimap": {
+    "show": "never"
+  },
+  "scrollbar": {
+    "show": "never",
+    "axes": {
+      "horizontal": false
+    }
+  },
+  "toolbar": {
+    "breadcrumbs": false,
+    "quick_actions": false,
+    "selections_menu": false,
+    "agent_review": true,
+    "code_actions": true
+  },
+  "project_panel":{
+
+    "show_diagnostics":"all",
+    "auto_reveal_entries": true,
+  },
+  "tab_bar": {
+    "show": true,
+    "show_nav_history_buttons": false
+  },
+  "tabs": {
+    "show_diagnostics": "all",
+    "file_icons": true,
+    "git_status": true,
+    "close_position": "right"
+  },
+
+  // Git integration (matching gitsigns)
+  "git": {
+    "git_gutter": "tracked_files",
+    "inline_blame": {
+      "enabled": true
+    }
+  },
+
+  // Language settings (matching Neovim LSP config)
+  "languages": {
+    "JavaScript": {
+      "formatter": "prettier",
+      "enable_language_server": true
+    },
+    "TypeScript": {
+      "formatter": "prettier",
+      "enable_language_server": true
+    },
+    "TSX": {
+      "formatter": "prettier",
+      "enable_language_server": true
+    },
+    "JSON": {
+      "formatter": "prettier"
+    },
+    "Go": {
+      "formatter": "language_server",
+      "enable_language_server": true
+    },
+    "Rust": {
+      "formatter": "language_server",
+      "enable_language_server": true
+    },
+    "Python": {
+      "formatter": "language_server",
+      "enable_language_server": true
+    },
+    "C": {
+      "enable_language_server": true
+    },
+    "C++": {
+      "enable_language_server": true
+    },
+    "Lua": {
+      "enable_language_server": true
+    },
+    "Zig": {
+      "enable_language_server": true
+    },
+    "SQL": {
+      "enable_language_server": true
+    },
+    "Scala": {
+      "enable_language_server": true
+    }
+  },
+
+  // LSP configuration
+  "lsp": {
+    "eslint": {
+      "settings": {
+        "format": true,
+        "autoFixOnSave": true,
+        "codeActionsOnSave": {
+          "source.fixAll.eslint": true
+        }
+      }
+    },
+    "typescript-language-server": {
+      "initialization_options": {
+        "preferences": {
+          "importModuleSpecifier": "relative"
+        }
+      }
+    },
+    "gopls": {
+      "initialization_options": {
+        "analyses": {
+          "unusedparams": true
+        },
+        "staticcheck": true,
+        "gofumpt": true
+      }
+    }
+  },
+
+  // AI assistant configuration (matching your Neovim setup)
+  "agent": {
+    "use_modifier_to_send": true,
+    "play_sound_when_agent_done": true,
+    "always_allow_tool_actions": true,
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "default_profile": "write",
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
+    "auto_focus_on_open": true,
+    "dock": "right"
+  },
+
+  // Additional features
+  "formatter": {
+    "code_actions": {
+      "source.fixAll.eslint": true,
+      "source.organizeImports": true
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "supermaven"
+
+  },
+  "show_edit_predictions": false,
+  "inline_code_actions": false,
+  "inlay_hints": {
+    "enabled": false
+  },
+  "indent_guides": {
+    "enabled": true,
+    "coloring": "indent_aware"
+  },
+  "search": {
+    "button": false,
+    "case_sensitive": true
+  },
+  "status_bar": {
+    "active_language_button": false,
+    "cursor_position_button": false
+  },
+  "preview_tabs": {
+    "enabled": false,
+    "enable_preview_from_file_finder": true
+  },
+
+  // Privacy settings
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+
+  // Window settings
+  // "title_bar": {
+  //   "show_menus": false,
+  //   "show_branch_name": false,
+  //   "show_project_items": false,
+  //   "show_sign_in": false,
+  //   "show_user_picture": false,
+  //   "show_branch_icon": false,
+  //   "show_onboarding_banner": false
+  // },
+
+  // Additional UI settings
+  "rounded_selection": true,
+  "lsp_document_colors": "inlay",
+  "hide_mouse": "on_typing_and_movement",
+  "wrap_guides": [120],
+  "show_wrap_guides": true,
+
+  // File types
+  "file_types": {
+    "javascript": ["*.js"],
+    "k1": ["*.k1"]
+  }
+}

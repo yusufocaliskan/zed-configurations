@@ -1,0 +1,6 @@
+.tmp*
+themes/
+prompt*
+conver*
+embe*
+*_backup.json
