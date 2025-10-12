@@ -1,12 +1,4 @@
 {
-  // Based on Neovim configuration - Everforest theme with JetBrains font
-  "agent_servers": {
-    "your_agent": {
-      "command": "path_to_executable",
-      "args": [],
-      "env": {}
-    }
-  },
   "icon_theme": "Material Icon Theme",
   "theme": "Everforest Dark Hard",
   "base_keymap": "VSCode",
@@ -15,17 +7,24 @@
   // Font settings (matching Neovim)
   "ui_font_family": "JetBrainsMonoNL Nerd Font",
   "buffer_font_family": "JetBrainsMonoNL Nerd Font",
-  "ui_font_size": 14,
+  "ui_font_size": 15,
   "buffer_font_size": 14,
   "terminal": {
     "env": {
       "Q_NEW_SESSION": "1"
     },
+    "default_height": 700,
     "font_family": "JetBrainsMonoNL Nerd Font",
-    "font_size": 14
-  },
+    "font_size": 14,
+    "cursor_shape": "bar",
+    "working_directory": "current_project_directory",
+    "button": false,
+    "toolbar":{
+      "breadcrumbs": true
+    }
 
-  "cursor_blink": false,
+  },
+  "cursor_blink": true,
   "relative_line_numbers": true,
   "vertical_scroll_margin": 10,
   "format_on_save": "on",
@@ -68,7 +67,9 @@
   "tab_bar": {
     "show": true,
     "show_nav_history_buttons": false
+
   },
+
   "tabs": {
     "show_diagnostics": "all",
     "file_icons": true,
@@ -81,6 +82,9 @@
     "git_gutter": "tracked_files",
     "inline_blame": {
       "enabled": true
+    },
+    "blame":{
+      "show_avatar": true
     }
   },
 
@@ -173,10 +177,9 @@
     },
     "default_profile": "write",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-sonnet-4"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-5"
     },
-    "auto_focus_on_open": true,
     "dock": "right"
   },
 
@@ -184,14 +187,19 @@
   "formatter": {
     "code_actions": {
       "source.fixAll.eslint": true,
-      "source.organizeImports": true
+      "source.organizeImports": true,
+      "source.removeUnusedImports": true
     }
   },
-  "features": {
-    "edit_prediction_provider": "supermaven"
-
+  "code_actions_on_format": {
+    "source.organizeImports": true,
+    "source.removeUnusedImports": true,
+    "source.fixAll.eslint": true
   },
-  "show_edit_predictions": false,
+  "features": {
+    "edit_prediction_provider": "zed"
+  },
+  "show_edit_predictions": true,
   "inline_code_actions": false,
   "inlay_hints": {
     "enabled": false
@@ -202,8 +210,14 @@
   },
   "search": {
     "button": false,
-    "case_sensitive": true
+    "case_sensitive": false,
+    "whole_word": false,
+    "include_ignored": false,
+    "regex": false
   },
+  "search_wrap": true,
+  "seed_search_query_from_cursor": "selection",
+  "use_smartcase_search": true,
   "status_bar": {
     "active_language_button": false,
     "cursor_position_button": false
@@ -219,16 +233,18 @@
     "metrics": false
   },
 
+  // Confirmation settings
+  "confirm_quit": true,
+
   // Window settings
-  // "title_bar": {
-  //   "show_menus": false,
-  //   "show_branch_name": false,
-  //   "show_project_items": false,
-  //   "show_sign_in": false,
-  //   "show_user_picture": false,
-  //   "show_branch_icon": false,
-  //   "show_onboarding_banner": false
-  // },
+  "title_bar": {
+    "show_menus": false,
+    "show_project_items": true,
+    "show_sign_in": true,
+    "show_user_picture": false,
+    "show_branch_icon": true,
+    "show_onboarding_banner":true
+  },
 
   // Additional UI settings
   "rounded_selection": true,

@@ -1,12 +1,62 @@
 [
+
+
   {
-    "context": "Editor || Terminal || FileFinder || CommandPalette || ProjectSearch || Picker || menu",
+    "context": "Editor",
     "bindings": {
-      // Universal cmd+hjkl navigation for everything
+      // Editor navigation
+      "cmd-h": "editor::MoveLeft",
+      "cmd-j": "editor::MoveDown",
+      "cmd-k": "editor::MoveUp",
+      "cmd-l": "editor::MoveRight",
+      "cmd-shift-e": "project_panel::ToggleFocus",
+
+    }
+  },
+  {
+    "context": "Terminal",
+    "bindings": {
+      // Terminal navigation
       "cmd-h": "editor::MoveLeft",
       "cmd-j": "editor::MoveDown",
       "cmd-k": "editor::MoveUp",
       "cmd-l": "editor::MoveRight"
+    }
+  },
+  {
+    "context": "FileFinder || CommandPalette || ProjectSearch || Picker",
+    "bindings": {
+      // Menu navigation in finders
+      "cmd-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrevious"
+    }
+  },
+  {
+    "context": "CompletionsMenu",
+    "bindings": {
+      // Code completion navigation
+      "cmd-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrevious",
+      "cmd-h": "menu::Cancel",
+      "cmd-l": "menu::Confirm"
+    }
+  },
+  {
+    "context": "Editor && showing_completions",
+    "bindings": {
+      // Code completion when typing
+      "cmd-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrevious",
+      "cmd-h": "menu::Cancel",
+      "cmd-l": "menu::Confirm"
+    }
+  },
+  {
+    "context": "menu",
+    "bindings": {
+      // General menu navigation
+      "cmd-j": "menu::SelectNext",
+      "cmd-k": "menu::SelectPrevious"
     }
   },
   {
@@ -38,15 +88,7 @@
 
     }
   },
-{
-    "context": "vim_mode == visual",
-      "bindings": {
-      "p": "editor::Paste",
-      "<": "editor::Outdent",
-      ">": "editor::Indent",
-      "space c": "editor::ToggleComments"
-    }
-  },
+
   {
     "context": "ProjectPanel",
     "bindings": {
@@ -112,27 +154,11 @@
         "g a": "editor::SelectAllMatches",
         "g shift-a": "editor::FindAllReferences",
         "g f": "project_symbols::Toggle",
-        "space p e": "diagnostics::Deploy" // Zed specific
       }
     },
     {
-      "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+      "context": "vim_mode == normal",
       "bindings": {
-        // Key-bindings for normal & visual mode
-
-        // Open markdown preview
-        "space m p": "markdown::OpenPreview",
-        "space m P": "markdown::OpenPreviewToTheSide",
-        // Git
-        "space g h d": "editor::ToggleSelectedDiffHunks",
-        "space g h r": "git::Restore"
-      }
-    },
-    {
-      "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-      "bindings": {
-        // Key-bindings to work only in normal mode
-        "space e": "editor::Hover",
 
         // Buffers
         "space u": "pane::SplitRight",
@@ -148,10 +174,6 @@
         "cmd-shift-right": "workspace::SwapPaneRight",
         "cmd-shift-down": "workspace::SwapPaneDown",
         "cmd-shift-up": "workspace::SwapPaneUp",
-        // "space pipas f": "file_finder::Toggle",
-        "space p s": "pane::DeploySearch",
-        "space f": "editor::Format",
-        "space m": "tab_switcher::Toggle",
         "ctrl-w l": "workspace::ToggleRightDock",
         "ctrl-w h": "workspace::ToggleLeftDock",
         "ctrl-w j": "workspace::ToggleBottomDock",
@@ -160,13 +182,9 @@
         "[ e": "editor::GoToDiagnostic",
         "] e": "editor::GoToPreviousDiagnostic",
 
-        // Git
         "[ g": "editor::GoToHunk",
         "] g": "editor::GoToPreviousHunk"
 
-        // YouTube Usage
-        // "k": ["workspace::SendKeystrokes", "up z z"],
-        // "j": ["workspace::SendKeystrokes", "down z z"]
       }
     },
 
@@ -188,27 +206,8 @@
         "cmd-k": "menu::SelectPrevious"
       }
     },
-    {
-      "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-      "bindings": {
-        // visual, visual line & visual block modes
-        "g c": "editor::ToggleComments"
-      }
-    },
-    {
-      "context": "Editor && vim_mode == insert",
-      "bindings": {
-        "j k": "vim::NormalBefore",
-        // Cursor movement in insert mode
-        "cmd-h": "editor::MoveLeft",
-        "cmd-j": "editor::MoveDown",
-        "cmd-k": "editor::MoveUp",
-        "cmd-l": "editor::MoveRight"
 
-        // YouTube Usage
-        // "j k": ["workspace::SendKeystrokes", "escape z z"]
-      }
-    },
+
     {
       "context": "vim_mode == normal",
       "bindings": {
@@ -275,8 +274,6 @@
         // "space g t": "git::ToggleStatusPanel",
 
         // File explorer (matching Neo-tree)
-        "space e": "project_panel::ToggleFocus",
-        "space shift-e": "project_panel::ToggleFocus",
 
         // Diagnostics (matching Trouble)
         "space d": "diagnostics::Deploy",
@@ -285,39 +282,7 @@
         "space i": "editor::ToggleCodeActions"
       }
     },
-    {
-      "context": "vim_mode == visual",
-      "bindings": {
-        // Visual mode improvements (matching Neovim)
-        "p": "editor::Paste",
-        "<": "editor::Outdent",
-        ">": "editor::Indent",
-        "space c": "editor::ToggleComments"
-      }
-    },
-    {
-      "context": "ProjectPanel",
-      "bindings": {
-        // Neo-tree like navigation
-        "h": "project_panel::CollapseSelectedEntry",
-        "l": "project_panel::ExpandSelectedEntry",
-        "j": "menu::SelectNext",
-        // "k": "menu::SelectPrev",
-        "o": "project_panel::Open",
-        "enter": "project_panel::Open",
-        "q": "project_panel::ToggleFocus",
-        "escape": "project_panel::ToggleFocus"
-      }
-    },
-    {
-      "context": "vim_mode == insert",
-      "bindings": {
-        // AI completion and assistance
-        "ctrl-x ctrl-o": "editor::ShowCompletions",
-        "ctrl-x ctrl-a": "assistant::InlineAssist",
-        "ctrl-x ctrl-c": "editor::ShowEditPrediction"
-      }
-    },
+
     {
       "context": "Workspace",
       "use_key_equivalents": true,
@@ -358,7 +323,7 @@
       }
     },
     {
-      "context": "Editor && (vim_mode == normal || vim_mode == visual) && !VimWaiting && !menu",
+      "context": "Editor && (vim_mode == normal) && !VimWaiting && !menu",
       "bindings": {
         // Markdown preview
         "space m p": "markdown::OpenPreview",
@@ -373,7 +338,7 @@
       "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
       "bindings": {
         // Hover and formatting
-        "space e": "editor::Hover",
+        "space e": "workspace::ToggleLeftDock",
         "space f": "editor::Format",
 
         // Window management
@@ -402,17 +367,17 @@
         "ctrl-space": "terminal::ToggleViMode"
       }
     },
-    {
-      "context": "Terminal && vi_mode==normal",
-      "bindings": {
-        "space t": "pane::SplitDown",
-        "space u": "pane::SplitRight",
-        "space h": "workspace::ActivatePaneLeft",
-        "space j": "workspace::ActivatePaneDown",
-        "space k": "workspace::ActivatePaneUp",
-        "space l": "workspace::ActivatePaneRight"
-      }
-    },
+    // {
+    //   "context": "Terminal",
+    //   "bindings": {
+    //     "space t": "pane::SplitDown",
+    //     "space u": "pane::SplitRight",
+    //     "space h": "workspace::ActivatePaneLeft",
+    //     "space j": "workspace::ActivatePaneDown",
+    //     "space k": "workspace::ActivatePaneUp",
+    //     "space l": "workspace::ActivatePaneRight"
+    //   }
+    // },
     {
       "context": "EmptyPane || SharedScreen",
       "bindings": {
@@ -421,12 +386,7 @@
         "ctrl-w l": "workspace::ToggleRightDock"
       }
     },
-    {
-      "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-      "bindings": {
-        "g c": "editor::ToggleComments"
-      }
-    },
+
     {
       "context": "Editor && vim_mode == insert",
       "bindings": {
@@ -446,5 +406,47 @@
         "cmd-shift-w": "pane::CloseAllItems"
       }
     },
+    {
+      "context": "!ContextEditor > (Editor && mode == full)",
+      "bindings": {
+        "cmd-shift-e": null
+      }
+    },
+    {
+      "context": "AgentPanel",
+      "bindings": {
+        "cmd-shift-e": null
+      }
+    },
+    {
+      "context": "Workspace",
+      "bindings": {
+        "cmd-shift-e": null
+      }
+    },
+    {
+      "context": "Workspace",
+      "bindings": {
+        "alt-t": "project_symbols::Toggle"
+      }
+    },
+    {
+      "context": "Workspace",
+      "bindings": {
+        "space g d": "editor::GoToDefinitionSplit"
+      }
+    },
+  {
+    "context": "Workspace",
+    "bindings": {
+      "space g t": "editor::GoToTypeDefinitionSplit"
+    }
+  },
+  {
+    "context": "vim_mode == normal",
+    "bindings": {
+      "space m b": "vim::ToggleMarksView"
+    }
+  }
 
 ]
