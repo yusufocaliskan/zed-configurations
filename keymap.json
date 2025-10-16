@@ -9,8 +9,7 @@
       "cmd-j": "editor::MoveDown",
       "cmd-k": "editor::MoveUp",
       "cmd-l": "editor::MoveRight",
-      "cmd-shift-e": "project_panel::ToggleFocus",
-
+      "cmd-shift-e": "project_panel::ToggleFocus"
     }
   },
   {
@@ -59,35 +58,6 @@
       "cmd-k": "menu::SelectPrevious"
     }
   },
-  {
-    "context": "vim_mode == normal",
-    "bindings": {
-      // "space j": "pane::ActivateNextItem",
-      // "space l": "pane::ActivateNextItem",
-      "space g h": "editor::GoToHunk",
-      "space f": "editor::Fold",
-      "space /": "buffer_search::Deploy",
-      "/": "buffer_search::Deploy",
-      "u": "editor::Undo",
-      "U": "editor::Redo",
-      "space g y": "editor::OpenExcerpts",
-      "shift-l": "pane::ActivateNextItem",
-      "space r": "editor::Rename",
-      "space c a": "editor::ToggleCodeActions",
-      "g p d": "editor::GoToDefinition",
-      "g f": "editor::GoToDefinition",
-      "g i": "editor::GoToImplementation",
-      "g q": "editor::ToggleCodeActions",
-      "g h": "editor::ToggleCodeActions",
-      "g r": "editor::FindAllReferences",
-      "g t": "editor::GoToTypeDefinition",
-      "cmd ]":"panel::NextPanelTab",
-      "cmd [":"panel::PreviousPanelTab",
-      // Terminal toggle
-      "cmd t": "terminal_panel::ToggleFocus"
-
-    }
-  },
 
   {
     "context": "ProjectPanel",
@@ -112,22 +82,21 @@
         "s h": "workspace::ActivatePaneLeft"
       }
     },
+    // {
+    //   "context": "Workspace",
+    //   "use_key_equivalents": true,
+    //   "bindings": {
+    //     "ctrl-w i": "terminal_panel::ToggleFocus",
+    //     "ctrl-w p": "agent::ToggleFocus",
+    //     "ctrl-w o": "project_panel::ToggleFocus",
+    //     // Global navigation with cmd+hjkl (overrides arrow keys everywhere)
+    //     "cmd-h": "editor::MoveLeft",
+    //     "cmd-j": "editor::MoveDown",
+    //     "cmd-k": "editor::MoveUp",
+    //     "cmd-l": "editor::MoveRight"
+    //   }
+    // },
     {
-      "context": "Workspace",
-      "use_key_equivalents": true,
-      "bindings": {
-        "ctrl-w i": "terminal_panel::ToggleFocus",
-        "ctrl-w p": "agent::ToggleFocus",
-        "ctrl-w o": "project_panel::ToggleFocus",
-        // Global navigation with cmd+hjkl (overrides arrow keys everywhere)
-        "cmd-h": "editor::MoveLeft",
-        "cmd-j": "editor::MoveDown",
-        "cmd-k": "editor::MoveUp",
-        "cmd-l": "editor::MoveRight"
-      }
-    },
-    {
-      // I had to add this here because it seems like setting them to null doesn't
       // really does anything. Duplicating the workspace panel focus works.
       "context": "(VimControl || (!Editor && !Terminal))",
       "use_key_equivalents": true,
@@ -142,7 +111,7 @@
       "bindings": {
         "g s": "outline::Toggle",
         "g i": "editor::ToggleCodeActions",
-        "g d": "editor::OpenExcerpts",
+        // "g d": "editor::OpenExcerpts", // Moved to space g y
         "g c": ["editor::ToggleComments", { "advance_downwards": false }]
       }
     },
@@ -152,21 +121,79 @@
         "g l": "vim::SelectNext",
         "g L": "vim::SelectPrevious",
         "g a": "editor::SelectAllMatches",
-        "g shift-a": "editor::FindAllReferences",
-        "g f": "project_symbols::Toggle",
+        "g shift-ag": "editor::FindAllReferences",
+        "g f": "project_symbols::Toggle"
       }
     },
     {
       "context": "vim_mode == normal",
       "bindings": {
 
+        "H": "editor::MoveToBeginningOfLine",
+        "L": "editor::MoveToEndOfLine",
+
+        // Buffer navigation (matching <S-h> and <S-l>)
+        "shift-h": "pane::ActivatePreviousItem",
+        "shift-l": "pane::ActivateNextItem",
+
+        // Select all (Ctrl+A)
+        "ctrl-a": "editor::SelectAll",
+
+        // Undo/Redo (matching VS Code vim)
+        "u": "editor::Undo",
+        "U": "editor::Redo",
+
+        // Window navigation
+        "space h": "workspace::ActivatePaneLeft",
+        "space j": "workspace::ActivatePaneDown",
+        "space k": "workspace::ActivatePaneUp",
+        "space l": "workspace::ActivatePaneRight",
+
+        // Search and replace
+        "/": "buffer_search::Deploy",
+
+        // LSP keybindings (matching VS Code)
+        "g d": "editor::GoToDefinition",
+        "space g d": "editor::GoToDeclarationSplit",
+        "g f": "editor::Hover",
+        "g i": "editor::GoToImplementation",
+        "space g i": "editor::GoToImplementationSplit",
+        "g r": "editor::FindAllReferences",
+        "g t": "editor::GoToTypeDefinition",
+        "g p t": "editor::GoToTypeDefinition",
+        "g h": "editor::ToggleCodeActions",
+        "space r": "editor::Rename",
+
+        // Diagnostics navigation
+        "'": "editor::GoToPreviousDiagnostic",
+        ";": "editor::GoToNextDocumentHighlight",
+
+        // Folding
+        "space f": "editor::Fold",
+
+        // Project management
+        // "space p f": "file_finder::Toggle",
+        // "space f r": "project_search::Toggle",
+
+        // Git operations (matching DiffView keymaps)
+        // "space g h": "editor::GoToHunk",
+        // "space g t": "git::ToggleStatusPanel",
+
+        // File explorer (matching Neo-tree)
+
+        // Diagnostics (matching Trouble)
+        "space d": "diagnostics::Deploy",
+
+        // Smart actions (toggle boolean)
+        "space i": "editor::ToggleCodeActions",
+        "cmd ]":"panel::NextPanelTab",
+        "cmd [":"panel::PreviousPanelTab",
+        // Terminal toggle
+        "cmd t": "terminal_panel::ToggleFocus",
+
         // Buffers
         "space u": "pane::SplitRight",
         "space t": "pane::SplitDown",
-        "space l": "workspace::ActivatePaneRight",
-        "space h": "workspace::ActivatePaneLeft",
-        "space k": "workspace::ActivatePaneUp",
-        "space j": "workspace::ActivatePaneDown",
         "cmd-[": "pane::ActivatePreviousItem",
         "cmd-]": "pane::ActivateNextItem",
         // Move active pane to adjacent split
@@ -204,82 +231,6 @@
         // Navigation in pickers and finders
         "cmd-j": "menu::SelectNext",
         "cmd-k": "menu::SelectPrevious"
-      }
-    },
-
-
-    {
-      "context": "vim_mode == normal",
-      "bindings": {
-        // Basic movement (matching Neovim)
-        "H": "editor::MoveToBeginningOfLine",
-        "L": "editor::MoveToEndOfLine",
-
-        // Buffer navigation (matching <S-h> and <S-l>)
-        "shift-h": "pane::ActivatePreviousItem",
-        "shift-l": "pane::ActivateNextItem",
-
-        // Select all (Ctrl+A)
-        "ctrl-a": "editor::SelectAll",
-
-        // Undo/Redo (matching VS Code vim)
-        "u": "editor::Undo",
-        "U": "editor::Redo",
-
-        // Window/Split management (matching Neovim)
-        // "space u": "pane::SplitRight",
-        // "space t": "pane::SplitDown",
-        // "space u l": "pane::SplitRight",
-        // "space u r": "pane::SplitRight",
-
-        // Window navigation
-        "space h": "workspace::ActivatePaneLeft",
-        "space j": "workspace::ActivatePaneDown",
-        "space k": "workspace::ActivatePaneUp",
-        "space l": "workspace::ActivatePaneRight",
-
-        // Search and replace
-        "/": "buffer_search::Deploy",
-        "space /": "buffer_search::Deploy",
-        // "space -": "editor::ClearSearchHighlights",
-
-        // LSP keybindings (matching VS Code)
-        "g d": "editor::GoToDefinition",
-        "g p d": "editor::GoToDefinition",
-        "g f": "editor::Hover",
-        "g i": "editor::GoToImplementation",
-        "g p i": "editor::GoToImplementation",
-        "g r": "editor::FindAllReferences",
-        "g t": "editor::GoToTypeDefinition",
-        "g p t": "editor::GoToTypeDefinition",
-        "g q": "editor::ToggleCodeActions",
-        "g h": "editor::ToggleCodeActions",
-        "space r": "editor::Rename",
-        "space c a": "editor::ToggleCodeActions",
-
-        // Diagnostics navigation
-        "'": "editor::GoToPreviousDiagnostic",
-        ";": "editor::GoToNextDocumentHighlight",
-
-        // Folding
-        "space f": "editor::Fold",
-
-        // Project management
-        // "space p f": "file_finder::Toggle",
-        // "space f r": "project_search::Toggle",
-
-        // Git operations (matching DiffView keymaps)
-        "space g h": "editor::GoToHunk",
-        "space g y": "editor::OpenExcerpts",
-        // "space g t": "git::ToggleStatusPanel",
-
-        // File explorer (matching Neo-tree)
-
-        // Diagnostics (matching Trouble)
-        "space d": "diagnostics::Deploy",
-
-        // Smart actions (toggle boolean)
-        "space i": "editor::ToggleCodeActions"
       }
     },
 
@@ -322,18 +273,7 @@
         "g shift-a": "editor::FindAllReferences"
       }
     },
-    {
-      "context": "Editor && (vim_mode == normal) && !VimWaiting && !menu",
-      "bindings": {
-        // Markdown preview
-        "space m p": "markdown::OpenPreview",
-        "space m shift-p": "markdown::OpenPreviewToTheSide",
 
-        // Git hunks
-        "space g h d": "editor::ToggleSelectedDiffHunks",
-        "space g h r": "git::Restore"
-      }
-    },
     {
       "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
       "bindings": {
@@ -344,7 +284,7 @@
         // Window management
         "ctrl-w l": "workspace::ToggleRightDock",
         "ctrl-w h": "workspace::ToggleLeftDock",
-        "ctrl-w j": "workspace::ToggleBottomDock",
+        "ctrl-w j": "workspace::ToggleBottomDock"
 
         // Diagnostics navigation
         // "[ e": "editor::GoToPrevDiagnostic",
@@ -378,21 +318,8 @@
     //     "space l": "workspace::ActivatePaneRight"
     //   }
     // },
-    {
-      "context": "EmptyPane || SharedScreen",
-      "bindings": {
-        "space p f": "file_finder::Toggle",
-        "space f p": "projects::OpenRecent",
-        "ctrl-w l": "workspace::ToggleRightDock"
-      }
-    },
 
-    {
-      "context": "Editor && vim_mode == insert",
-      "bindings": {
-        "j k": "vim::NormalBefore"
-      }
-    },
+
     {
       "context": "Workspace",
       "bindings": {
@@ -402,7 +329,6 @@
     {
       "context": "Workspace",
       "bindings": {
-        "cmd-shift-c": "assistant::ToggleFocus",
         "cmd-shift-w": "pane::CloseAllItems"
       }
     },
@@ -447,6 +373,27 @@
     "bindings": {
       "space m b": "vim::ToggleMarksView"
     }
+  },
+  {
+    "context": "Pane",
+    "bindings": {
+      "cmd-shift-g": null
+    }
+  },
+  {
+    "context": "ContextEditor > Editor",
+    "bindings": {
+      "cmd-shift-g": null
+    }
+  },
+  {
+    "bindings": {
+      "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "space g y": "editor::OpenExcerpts"
+    }
   }
-
 ]
