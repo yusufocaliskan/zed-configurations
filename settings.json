@@ -1,4 +1,10 @@
 {
+  "code_actions_on_format": {
+    "source.removeUnusedImports": true,
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true,
+    "source.addMissingImports": true
+  },
   "git_panel": {
     "scrollbar": {
       "show": "never"
@@ -23,6 +29,7 @@
   "ui_font_size": 14.0,
   "buffer_font_size": 14,
   "terminal": {
+    "default_height": 500,
     "button": true
   },
   "cursor_blink": true,
@@ -33,8 +40,7 @@
   "linked_edits": true,
   "show_whitespaces": "none",
   "soft_wrap": "editor_width",
-  "file_finder":{
-
+  "file_finder": {
     "include_ignored": false
   },
 
@@ -57,11 +63,10 @@
 
   "toolbar": {
     "code_actions": false
-
   },
-  "project_panel":{
+  "project_panel": {
     "default_width": 500,
-    "show_diagnostics":"errors",
+    "show_diagnostics": "errors",
     "auto_reveal_entries": true
   },
   "tab_bar": {
@@ -139,41 +144,43 @@
     "gopls": {
       "initialization_options": {
         "analyses": {
-          "unusedparams": true,          // Detect unused function parameters
-          "ST1000": false,               // Disable package comment warnings
-          "ST1020": false,            // Disable exported method comment warnings
-          "ST1022": false,               // Disable exported function comment warnings
-          "unusedvariable": true,        // Detect unused variables
-          "shadow": true,                // Detect variable shadowing
-          "nilness": true,               // Detect potential nil pointer dereferences
-          "fieldalignment": false        // Check struct field alignment (can be noisy)
+          "unusedparams": true, // Detect unused function parameters
+          "ST1000": false, // Disable package comment warnings
+          "ST1020": false, // Disable exported method comment warnings
+          "ST1022": false, // Disable exported function comment warnings
+          "unusedvariable": true, // Detect unused variables
+          "shadow": true, // Detect variable shadowing
+          "nilness": true, // Detect potential nil pointer dereferences
+          "fieldalignment": false // Check struct field alignment (can be noisy)
         },
-        "staticcheck": true,             // Enable staticcheck analysis
-        "gofumpt": true,                 // Use gofumpt for formatting
-        "usePlaceholders": true,         // Add parameter placeholders in completions
-        "completeUnimported": true,      // Suggest completions from unimported packages
-        "deepCompletion": true,          // Enable deep completions
-        "matcher": "fuzzy",              // Use fuzzy matching for completions
-        "symbolMatcher": "fuzzy",        // Use fuzzy matching for symbols
+        "staticcheck": true, // Enable staticcheck analysis
+        "gofumpt": true, // Use gofumpt for formatting
+        "usePlaceholders": true, // Add parameter placeholders in completions
+        "completeUnimported": true, // Suggest completions from unimported packages
+        "deepCompletion": true, // Enable deep completions
+        "matcher": "fuzzy", // Use fuzzy matching for completions
+        "symbolMatcher": "fuzzy", // Use fuzzy matching for symbols
         "hoverKind": "FullDocumentation", // Show full documentation on hover
-        "linkTarget": "pkg.go.dev",     // Link to pkg.go.dev for documentation
-        "codelenses": {                  // Clickable actions in editor
-          "gc_details": false,           // Hide garbage collection details
-          "generate": true,              // Show "go generate" commands
-          "regenerate_cgo": true,        // Show CGO regeneration options
-          "test": true,                  // Show "run test" options
-          "tidy": true,                  // Show "go mod tidy" commands
-          "upgrade_dependency": true,    // Show dependency upgrade options
-          "vendor": true                 // Show vendor commands
+        "linkTarget": "pkg.go.dev", // Link to pkg.go.dev for documentation
+        "codelenses": {
+          // Clickable actions in editor
+          "gc_details": false, // Hide garbage collection details
+          "generate": true, // Show "go generate" commands
+          "regenerate_cgo": true, // Show CGO regeneration options
+          "test": true, // Show "run test" options
+          "tidy": true, // Show "go mod tidy" commands
+          "upgrade_dependency": true, // Show dependency upgrade options
+          "vendor": true // Show vendor commands
         },
-        "hints": {                       // Inlay hints (inline type information)
-          "assignVariableTypes": false,  // Don't show variable types on assignment
+        "hints": {
+          // Inlay hints (inline type information)
+          "assignVariableTypes": false, // Don't show variable types on assignment
           "compositeLiteralFields": true, // Show field names in struct literals
           "compositeLiteralTypes": false, // Don't show types in composite literals
-          "constantValues": true,        // Show constant values
+          "constantValues": true, // Show constant values
           "functionTypeParameters": true, // Show function type parameters
-          "parameterNames": true,        // Show parameter names in function calls
-          "rangeVariableTypes": false    // Don't show types for range variables
+          "parameterNames": true, // Show parameter names in function calls
+          "rangeVariableTypes": false // Don't show types for range variables
         }
       }
     }
@@ -182,7 +189,7 @@
   // AI assistant configuration (matching your Neovim setup)
   "agent": {
     "use_modifier_to_send": true,
-    "play_sound_when_agent_done": true,
+    "play_sound_when_agent_done": false,
     "always_allow_tool_actions": true,
     "inline_assistant_model": {
       "provider": "zed.dev",
@@ -201,43 +208,23 @@
       "enabled": true,
       "max_severity": null
     }
-
   },
   "search": {
-    "button": true
+    "button": true,
+    "case_sensitive": false,
+    "whole_word": false,
+    "regex": false
   },
   // Additional features
-  "formatter": [
-    {
-      "code_action": "source.organizeImports"
-    },
-    {
-      "code_action": "source.removeUnusedImports"
-    },
-    {
-      "code_action": "source.addMissingImports"
-    },
-    {
-      "code_action": "source.fixAll.eslint"
-    },
-    {
-      "code_action": "source.fixAll.eslint"
-    },
-    {
-      "code_action": "source.organizeImports"
-    },
-    {
-      "code_action": "source.removeUnusedImports"
-    }
-  ],
-  "features": {
-    "edit_prediction_provider": "supermaven"
-  },
   "show_edit_predictions": true,
-  "inline_code_actions": false,
+  "inline_code_actions": true,
+
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
 
   "inlay_hints": {
-    "enabled":false
+    "enabled": false
   },
   "indent_guides": {
     "enabled": true,
@@ -246,7 +233,7 @@
 
   "search_wrap": true,
   "seed_search_query_from_cursor": "selection",
-  "use_smartcase_search":false,
+  "use_smartcase_search": false,
   "status_bar": {
     "active_language_button": true
   },
