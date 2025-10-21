@@ -3,7 +3,9 @@
     "source.removeUnusedImports": true,
     "source.organizeImports": true,
     "source.fixAll.eslint": true,
-    "source.addMissingImports": true
+    "source.addMissingImports": true,
+    "source.fixAll.ruff": true,
+    "source.organizeImports.ruff": true
   },
   "git_panel": {
     "scrollbar": {
@@ -26,7 +28,7 @@
   // Font settings (matching Neovim)
   "ui_font_family": "JetBrainsMonoNL Nerd Font",
   "buffer_font_family": "JetBrainsMonoNL Nerd Font",
-  "ui_font_size": 14.0,
+  "ui_font_size": 16.0,
   "buffer_font_size": 14,
   "terminal": {
     "default_height": 500,
@@ -48,7 +50,7 @@
   "vim": {
     "use_system_clipboard": "always",
     // "use_multiline_find": true,
-    "use_smartcase_find": true,
+    "use_smartcase_find": false,
     "toggle_relative_line_numbers": true,
     "highlight_on_yank_duration": 200
   },
@@ -65,6 +67,7 @@
     "code_actions": false
   },
   "project_panel": {
+    "auto_fold_dirs": false,
     "default_width": 500,
     "show_diagnostics": "errors",
     "auto_reveal_entries": true
@@ -110,8 +113,22 @@
       "enable_language_server": true
     },
     "Python": {
-      "formatter": "language_server",
-      "enable_language_server": true
+      "formatter": {
+        "language_server": {
+          "name": "ruff"
+        }
+      },
+      "enable_language_server": true,
+      "language_servers": ["basedpyright", "ruff"],
+      "format_on_save": "on",
+      "ensure_final_newline_on_save": true,
+      "remove_trailing_whitespace_on_save": true,
+      "inlay_hints": {
+        "enabled": false,
+        "show_type_hints": false,
+        "show_parameter_hints": false,
+        "show_other_hints": false
+      }
     },
     "C": {
       "enable_language_server": true
@@ -138,6 +155,141 @@
           "importModuleSpecifier": "relative",
           "includeCompletionsForModuleExports": true,
           "includeCompletionsWithInsertText": true
+        }
+      }
+    },
+    "basedpyright": {
+      "settings": {
+        "basedpyright": {
+          "analysis": {
+            "diagnosticMode": "openFilesOnly",
+            "typeCheckingMode": "basic",
+            "autoImportCompletions": true,
+            "autoSearchPaths": true,
+            "useLibraryCodeForTypes": true,
+            "completeFunctionParens": true,
+            "indexing": true,
+            "logLevel": "Warning",
+            "diagnosticSeverityOverrides": {
+              "reportGeneralTypeIssues": "none",
+              "reportMissingImports": "error",
+              "reportPrivateImportUsage": "none",
+              "reportMissingTypeStubs": "none",
+              "reportImportCycles": "none",
+              "reportUnusedImport": "none",
+              "reportUnusedClass": "none",
+              "reportUnusedFunction": "none",
+              "reportUnusedVariable": "none",
+              "reportDuplicateImport": "none",
+              "reportPrivateUsage": "none",
+              "reportTypeCommentUsage": "none",
+              "reportIncompatibleMethodOverride": "error",
+              "reportIncompatibleVariableOverride": "error",
+              "reportInconsistentConstructor": "error",
+              "reportOverlappingOverload": "error",
+              "reportMissingParameterType": "none",
+              "reportUnnecessaryTypeIgnoreComment": "none",
+              "reportUnknownParameterType": "none",
+              "reportUnknownArgumentType": "none",
+              "reportUnknownLambdaType": "none",
+              "reportUnknownVariableType": "none",
+              "reportUnknownMemberType": "none",
+              "reportMissingTypeArgument": "none",
+              "reportUndefinedVariable": "error",
+              "reportUnboundVariable": "error",
+              "reportInvalidStringEscapeSequence": "error",
+              "reportInvalidTypeVarUse": "error",
+              "reportCallInDefaultInitializer": "none",
+              "reportUnnecessaryIsInstance": "none",
+              "reportUnnecessaryCast": "none",
+              "reportUnnecessaryComparison": "none",
+              "reportAssertAlwaysTrue": "none",
+              "reportSelfClsParameterName": "none",
+              "reportImplicitStringConcatenation": "none",
+              "reportInvalidStubStatement": "error",
+              "reportIncompleteStub": "none",
+              "reportUnsupportedDunderAll": "none",
+              "reportUnusedCallResult": "none",
+              "reportUnusedCoroutine": "error",
+              "reportUnusedExcept": "none",
+              "reportUnusedExpression": "none",
+              "reportUnnecessaryContains": "none",
+              "reportUnnecessaryDict": "none",
+              "reportMatchNotExhaustive": "none",
+              "reportShadowedImports": "none"
+            },
+            "inlayHints": {
+              "variableTypes": false,
+              "functionReturnTypes": false,
+              "callArgumentNames": false,
+              "pytestParameters": false,
+              "parameterTypes": false
+            }
+          }
+        },
+        "python": {
+          "analysis": {
+            "extraPaths": [],
+            "stubPath": "typings",
+            "typeshedPaths": [],
+            "include": ["**/*.py"],
+            "exclude": [
+              "**/node_modules",
+              "**/__pycache__",
+              ".git",
+              ".venv",
+              "venv"
+            ]
+          },
+          "venvPath": ".",
+          "pythonPath": "python",
+          "defaultInterpreterPath": "python",
+          "condaPath": "conda"
+        },
+        "intelliSense": {
+          "autoImportCompletions": true,
+          "completeFunctionParens": true,
+          "quickSuggestions": {
+            "strings": true
+          },
+          "suggestOnTriggerCharacters": true
+        }
+      }
+    },
+    "ruff": {
+      "settings": {
+        "lint": {
+          "enable": true,
+          "run": "onSave",
+          "args": [
+            "--select",
+            "E9,F",
+            "--ignore",
+            "E501,E402,E731,W,F401,F841",
+            "--line-length",
+            "120"
+          ]
+        },
+        "format": {
+          "enable": true,
+          "args": ["--line-length", "120"]
+        },
+        "codeAction": {
+          "fixViolation": {
+            "enable": true
+          },
+          "disableRuleComment": {
+            "enable": true
+          }
+        },
+        "organizeImports": true,
+        "fixAll": true,
+        "showNotifications": "off",
+        "lineLength": 120,
+        "perFileIgnores": {
+          "**/__init__.py": ["F401", "F403"],
+          "**/tests/**": ["S101", "S105", "S106"],
+          "**/{test,tests}_*.py": ["S101", "S105", "S106"]
         }
       }
     },
@@ -175,11 +327,11 @@
         "hints": {
           // Inlay hints (inline type information)
           "assignVariableTypes": false, // Don't show variable types on assignment
-          "compositeLiteralFields": true, // Show field names in struct literals
+          "compositeLiteralFields": false, // Show field names in struct literals
           "compositeLiteralTypes": false, // Don't show types in composite literals
-          "constantValues": true, // Show constant values
-          "functionTypeParameters": true, // Show function type parameters
-          "parameterNames": true, // Show parameter names in function calls
+          "constantValues": false, // Show constant values
+          "functionTypeParameters": false, // Show function type parameters
+          "parameterNames": false, // Show parameter names in function calls
           "rangeVariableTypes": false // Don't show types for range variables
         }
       }
@@ -197,16 +349,16 @@
     },
     "default_profile": "write",
     "default_model": {
-      "provider": "zed.dev",
-      "model": "claude-sonnet-4-5"
+      "provider": "copilot_chat",
+      "model": "gpt-5"
     },
     "dock": "right"
   },
   "diagnostics": {
-    "include_warnings": true,
+    "include_warnings": false,
     "inline": {
       "enabled": true,
-      "max_severity": null
+      "max_severity": "error"
     }
   },
   "search": {
@@ -215,6 +367,18 @@
     "whole_word": false,
     "regex": false
   },
+  // "buffer_search": {
+  //   "case_sensitive": false,
+  //   "whole_word": false,
+  //   "regex": false,
+  //   "use_regex": false
+  // },
+  // "project_search": {
+  //   "case_sensitive": false,
+  //   "whole_word": false,
+  //   "regex": false,
+  //   "use_regex": false
+  // },
   // Additional features
   "show_edit_predictions": true,
   "inline_code_actions": true,
@@ -224,6 +388,10 @@
   },
 
   "inlay_hints": {
+    "show_other_hints": false,
+    "show_parameter_hints": false,
+    "show_type_hints": false,
+    "show_value_hints": false,
     "enabled": false
   },
   "indent_guides": {

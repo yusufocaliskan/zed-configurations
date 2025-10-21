@@ -12,6 +12,13 @@
   },
 
   {
+    "context": "Terminal && terminal_vi_mode == insert",
+    "bindings": {
+      "jk": ["terminal::SendKeystroke", "escape"]
+    }
+  },
+
+  {
     "context": "FileFinder || CommandPalette || ProjectSearch || Picker",
     "bindings": {
       // Menu navigation in finders
@@ -62,7 +69,9 @@
       "ctrl-x ctrl-o": "editor::ShowCompletions",
       "ctrl-x ctrl-a": "assistant::InlineAssist", // zed specific
       // For showing edit prediction manually.
-      "ctrl-x ctrl-c": "editor::ShowEditPrediction" // zed specific
+      "ctrl-x ctrl-c": "editor::ShowEditPrediction",
+
+      "j k": ["workspace::SendKeystrokes", "escape"]
     }
   },
 
@@ -111,10 +120,17 @@
   },
 
   {
+    "context": "Workspace",
+    "bindings": {
+      // "_": ["workspace::SendKeystrokes", "cmd-alt-c cmd-alt-w cmd-alt-x"],
+      "alt--": ["workspace::SendKeystrokes", "cmd-alt-c cmd-alt-w cmd-alt-x"]
+    }
+  },
+
+  {
     "context": "vim_mode == normal",
     "bindings": {
-      "H": "editor::MoveToBeginningOfLine",
-      "L": "editor::MoveToEndOfLine",
+      "space -": ["workspace::SendKeystrokes", "cmd-alt-c cmd-alt-w cmd-alt-x"],
 
       // Buffer navigation (matching <S-h> and <S-l>)
       "shift-h": "pane::ActivatePreviousItem",
@@ -138,7 +154,7 @@
 
       // LSP keybindings (matching VS Code)
       "g d": "editor::GoToDefinition",
-      "space g d": "editor::GoToDeclarationSplit",
+      "cmd-shift-U": "editor::GoToDefinitionSplit",
       "g f": "editor::Hover",
       "g i": "editor::GoToImplementation",
       "space g i": "editor::GoToImplementationSplit",
@@ -153,7 +169,7 @@
       ";": "editor::GoToNextDocumentHighlight",
 
       // Folding
-      "space f": "editor::Fold",
+      // "space f": "editor::Fold",
 
       // Diagnostics (matching Trouble)
       "space d": "diagnostics::Deploy",
@@ -174,10 +190,10 @@
       "cmd-]": "pane::ActivateNextItem",
 
       // Move active pane to adjacent split
-      "cmd-shift-left": "workspace::SwapPaneLeft",
-      "cmd-shift-right": "workspace::SwapPaneRight",
-      "cmd-shift-down": "workspace::SwapPaneDown",
-      "cmd-shift-up": "workspace::SwapPaneUp",
+      // "cmd-shift-left": "workspace::SwapPaneLeft",
+      // "cmd-shift-right": "workspace::SwapPaneRight",
+      // "cmd-shift-down": "workspace::SwapPaneDown",
+      // "cmd-shift-up": "workspace::SwapPaneUp",
       "ctrl-w l": "workspace::ToggleRightDock",
       "ctrl-w h": "workspace::ToggleLeftDock",
       "ctrl-w j": "workspace::ToggleBottomDock",
@@ -194,6 +210,28 @@
     }
   },
 
+  {
+    "context": "Editor && vim_mode == normal && !menu",
+    "bindings": {
+      "cmd-shift-left": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "left" }
+      ],
+      "cmd-shift-w": "pane::CloseAllItems",
+      "cmd-shift-right": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "right" }
+      ],
+      "cmd-shift-up": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "up" }
+      ],
+      "cmd-shift-down": [
+        "workspace::MoveItemToPaneInDirection",
+        { "direction": "down" }
+      ]
+    }
+  },
   {
     "context": "EmptyPane || SharedScreen",
     "bindings": {
@@ -215,6 +253,7 @@
 
   {
     "context": "Workspace",
+
     "use_key_equivalents": true,
     "bindings": {
       // Terminal and panel toggles
