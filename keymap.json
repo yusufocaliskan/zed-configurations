@@ -94,7 +94,6 @@
     "context": "(VimControl || (!Editor && !Terminal))",
     "use_key_equivalents": true,
     "bindings": {
-      "ctrl-w i": "terminal_panel::ToggleFocus",
       "ctrl-w p": "agent::ToggleFocus",
       "ctrl-w o": "project_panel::ToggleFocus"
     }
@@ -154,7 +153,9 @@
 
       // LSP keybindings (matching VS Code)
       "g d": "editor::GoToDefinition",
-      "cmd-shift-U": "editor::GoToDefinitionSplit",
+      "alt-shift-l": "editor::GoToDefinitionSplit",
+      "alt-shift-h": ["workspace::SendKeystrokes", "g d cmd-shift-left"],
+
       "g f": "editor::Hover",
       "g i": "editor::GoToImplementation",
       "space g i": "editor::GoToImplementationSplit",
@@ -181,7 +182,6 @@
       "cmd [": "panel::PreviousPanelTab",
 
       // Terminal toggle
-      "cmd t": "terminal_panel::ToggleFocus",
 
       // Buffers
       "space u": "pane::SplitRight",
@@ -313,18 +313,6 @@
       // "] g": "editor::GoToNextHunk"
     }
   },
-  {
-    "context": "Terminal",
-    "bindings": {
-      "ctrl-w k": "terminal_panel::ToggleFocus",
-      "cmd-shift-down": "pane::SplitDown",
-      "cmd-shift-right": "pane::SplitRight",
-      "cmd-shift-left": "pane::SplitLeft",
-      "cmd-shift-up": "pane::SplitUp",
-      // Toggle terminal vi mode
-      "ctrl-space": "terminal::ToggleViMode"
-    }
-  },
   // {
   //   "context": "Terminal",
   //   "bindings": {
@@ -338,15 +326,21 @@
   // },
 
   {
-    "context": "Workspace",
+    "context": "Terminal",
     "bindings": {
-      "cmd-t": "terminal_panel::Toggle"
+      "cmd-t": "terminal_panel::Toggle",
+      "ctrl-w k": "terminal_panel::ToggleFocus",
+      "alt-shift-j": "pane::SplitDown",
+      "alt-shift-l": "pane::SplitRight",
+      "alt-shift-h": "pane::SplitLeft",
+      "alt-shift-k": "pane::SplitUp"
     }
   },
   {
     "context": "Workspace",
     "bindings": {
-      "cmd-shift-w": "pane::CloseAllItems"
+      "cmd-shift-w": "pane::CloseAllItems",
+      "cmd-t": "terminal_panel::ToggleFocus"
     }
   },
   {
@@ -414,6 +408,36 @@
   {
     "bindings": {
       "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "cmd-d": "project_panel::NewDirectory"
+    }
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "r": "project_panel::Rename"
+    }
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "n": "project_panel::NewFile"
+    }
+  },
+  {
+    "context": "(ProjectPanel && not_editing)",
+    "bindings": {
+      "%": null
+    }
+  },
+  {
+    "context": "ProjectPanel",
+    "bindings": {
+      "cmd-n": null
     }
   }
 ]
