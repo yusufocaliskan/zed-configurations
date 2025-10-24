@@ -439,5 +439,16 @@
     "bindings": {
       "cmd-n": null
     }
+  },
+  {
+    "context": "BufferSearchBar",
+    "bindings": {
+      "cmd-o": "outline::Toggle"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-o": null
+    }
   }
 ]
