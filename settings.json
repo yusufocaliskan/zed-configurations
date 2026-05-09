@@ -91,11 +91,28 @@
     "font_size": 14,
     "font_family": "JetBrainsMono Nerd Font",
     "button": true,
+    "shell": { "program": "zsh" },
+    "working_directory": "current_project_directory",
+    "blinking": "on",
   },
   "cursor_blink": true,
+  "cursor_shape": "bar",
+  "current_line_highlight": "all",
+  "selection_highlight": true,
+  "hover_popover_enabled": true,
+  "hover_popover_delay": 300,
   "relative_line_numbers": "enabled",
   "vertical_scroll_margin": 10,
   "format_on_save": "on",
+  "remove_trailing_whitespace_on_save": true,
+  "ensure_final_newline_on_save": true,
+  "autosave": "on_focus_change",
+  "tab_size": 2,
+  "hard_tabs": false,
+  "preferred_line_length": 100,
+  "restore_on_startup": "last_session",
+  "close_on_file_delete": true,
+  "use_autoclose": true,
   "auto_update": true,
   "linked_edits": true,
   "show_whitespaces": "none",
@@ -103,6 +120,22 @@
   "file_finder": {
     "include_ignored": "indexed",
   },
+  "file_scan_exclusions": [
+    "**/.git",
+    "**/.svn",
+    "**/.hg",
+    "**/node_modules",
+    "**/.DS_Store",
+    "**/dist",
+    "**/build",
+    "**/target",
+    "**/.next",
+    "**/.venv",
+    "**/__pycache__",
+  ],
+  "collaboration_panel": { "button": false },
+  "chat_panel": { "button": "never" },
+  "notification_panel": { "button": false },
 
   // Vim configuration (matching Neovim)
   "vim": {
@@ -145,7 +178,10 @@
 
   // Git integration (matching gitsigns)
   "git": {
+    "git_gutter": "tracked_files",
     "inline_blame": {
+      "enabled": true,
+      "delay_ms": 600,
       "show_commit_summary": true,
     },
   },
